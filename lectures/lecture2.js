@@ -1,0 +1,23 @@
+LECTURES.push({n:2,title:"Lecture 2: I/O, Interrupts, DMA, Buses",
+cards:[
+["I/O module functions","Control and timing, CPU communication, device communication, data buffering, error detection."],
+["Programmed I/O","Processor directly controls the I/O operation and must wait until it completes. Wasteful if the processor is faster."],
+["Interrupt-driven I/O","Processor issues the command, keeps executing other instructions, and is interrupted when the I/O module finishes."],
+["DMA","I/O module and main memory exchange data directly without processor involvement. The controller takes over the bus with CPU permission."],
+["Cycle stealing","DMA uses the bus when the CPU is not going to, so the CPU can keep working."],
+["Identifying the interrupting module","Software poll (slow); daisy chain / hardware poll (module places vector on bus); bus arbitration (module claims bus first)."],
+["Simple interrupt processing","Hardware: finish instruction, acknowledge, push PSW and PC on control stack, load new PC. Software: save state, process, restore state, restore PSW and PC."],
+["Bus","Shared communication link (one set of wires) connecting subsystems. Versatile and low cost, but a bandwidth bottleneck."]],
+qs:[
+["Which I/O technique makes the CPU wait until the operation completes?",["Programmed I/O","Interrupt-driven I/O","DMA","None of these"],[0],"The processor polls status."],
+["When a DMA transfer finishes, the controller...",["releases the bus","sends an interrupt to the CPU","waits for the CPU to copy the data","shuts down the system"],[0,1],"DMA needs no CPU copying."],
+["Which DMA configuration uses the bus twice per transfer and suspends the CPU twice?",["Single bus, detached DMA","Single bus, integrated DMA","Separate I/O bus","None"],[0],"I/O to DMA, then DMA to memory."],
+["In the separate I/O bus DMA configuration, how many times is the CPU suspended per transfer?",["0","1","2","3"],[1],"Only the DMA-to-memory transfer uses the system bus."],
+["What is cycle stealing?",["DMA uses the bus when the CPU will not, so the CPU keeps working","DMA suspends the CPU for the whole transfer","The CPU takes cycles from the I/O module","An interrupt is ignored"],[0],"It is an alternative to suspending the CPU."],
+["Why can user programs not talk to I/O devices directly?",["To protect shared I/O resources","Devices are too slow","User programs lack memory","To save power"],[0],"The OS mediates I/O."],
+["Which are limits or disadvantages of a bus?",["Communication bottleneck","Speed limited by bus length","Speed limited by number of devices","New devices cannot be added"],[0,1,2],"Buses are versatile and scalable."],
+["What does the processor do right after a device issues an interrupt?",["Finishes the current instruction","Saves all registers to disk","Loads the handler mid-instruction","Discards the instruction"],[0],"Then it acknowledges the interrupt."],
+["What is pushed onto the control stack on an interrupt?",["PSW and PC","Only data registers","The heap","The file table"],[0],"They are restored afterward."],
+["Which method of identifying the interrupting module is described as slow?",["Software poll","Daisy chain","Bus arbitration","Vectored interrupt"],[0],"The CPU asks each module in turn."],
+["How are multiple interrupts handled?",["Each line has a priority; higher priority can interrupt lower","First come first served only","Lowest priority first","Extra interrupts are ignored"],[0],"Priority decides."],
+["Which are carried on a bus's data lines?",["Data","Addresses","Complex commands","Request acknowledgments"],[0,1,2],"Acknowledgments travel on control lines."]]});

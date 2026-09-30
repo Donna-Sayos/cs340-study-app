@@ -1,0 +1,23 @@
+LECTURES.push({n:3,title:"Lecture 3: Buses, Networks, Virtualization",
+cards:[
+["Types of buses","Processor-memory (short, fast, proprietary); I/O bus (long, slower, SCSI/USB/Firewire); backplane (intermediary, e.g. ATA, PCIexpress)."],
+["Synchronous bus","Has a clock in its control lines. Little logic, very fast, but all devices share one clock rate and it cannot be long (clock skew)."],
+["Asynchronous bus","No clock; uses handshaking (ReadReq, Ack, DataRdy). Handles varied devices and longer lengths, but slower."],
+["Bus arbitration goals","Balance bus priority (highest priority first) and fairness (lowest priority never locked out)."],
+["Daisy chain vs centralized parallel","Daisy chain: simple but unfair and slower. Centralized parallel: flexible, can assure fairness, but more complex arbiter."],
+["Internet protocol stack","Application (FTP, SMTP, HTTP), transport (TCP, UDP), network (IP, routing), link (Ethernet, WiFi, PPP), physical."],
+["Packet transmission delay","L (bits) / R (bits/sec): time to push an L-bit packet onto a link of rate R."],
+["Hypervisor (VMM)","Software that maps virtual resources (memory, I/O, CPUs) to physical ones. The guest OS may differ from the host OS."]],
+qs:[
+["Which bus is short, high speed, and matched to the memory system?",["Processor-memory bus","I/O bus","Backplane bus","USB"],[0],"It is optimized for cache block transfers."],
+["Which are advantages of an asynchronous bus?",["Accommodates a wide range of device speeds","Can be lengthened without clock skew problems","Faster than a synchronous bus","Needs no handshaking"],[0,1],"It is slower and needs handshaking."],
+["Why can a fast synchronous bus not be long?",["Clock skew","Handshaking overhead","Wired-OR","Fairness"],[0],"Devices must stay in step with the clock."],
+["Which are disadvantages of daisy chain arbitration?",["Cannot assure fairness","Slower; the grant signal limits speed","Complicated arbiter hardware","Needs a separate line per device"],[0,1],"Its advantage is simple hardware."],
+["Which arbitration scheme can assure fairness but needs a more complicated arbiter?",["Centralized parallel","Daisy chain","Software poll","Wired-OR"],[0],"It is also flexible."],
+["How long does a 1000-bit packet take on a 1 Mbps link?",["1 ms","1 s","10 ms","0.1 ms"],[0],"1000 / 1,000,000 = 0.001 s."],
+["Which layer includes TCP and UDP?",["Transport","Network","Link","Application"],[0],"Process-to-process transfer."],
+["Which layer routes datagrams from source to destination?",["Application","Transport","Network","Link"],[2],"IP and routing protocols."],
+["Which are true of clients in client-server?",["May be intermittently connected","May have dynamic IP addresses","Do not communicate directly with each other","Always on with a permanent IP"],[0,1,2],"Servers are always on with permanent IPs."],
+["Which are guided media?",["Copper","Fiber","Coax","Radio"],[0,1,2],"Radio is unguided."],
+["Which is true of hypervisors?",["The guest OS may differ from the host OS","Guest code runs in privileged mode","They remove all performance impact","They need identical OSes"],[0],"Virtualization has some performance impact."],
+["Which twisted pair category supports 10 Gbps?",["Category 6/6A","Category 5","Category 8","None"],[0],"Cat 5: 100 Mbps/1 Gbps; Cat 8: 25/40 Gbps."]]});

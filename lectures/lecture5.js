@@ -1,0 +1,23 @@
+LECTURES.push({n:5,title:"Lecture 5: OS Services, Interfaces, System Calls, APIs",
+cards:[
+["User-helpful OS services","User interface, program execution, I/O operations, file-system manipulation, communications, error detection."],
+["Resource-sharing services","Resource allocation, accounting, protection and security."],
+["Communication methods","Shared memory or message passing (packets moved by the OS)."],
+["Shell","A command-line interpreter in UNIX and a full programming language. Examples: bash, csh, sh."],
+["Built-in vs system program","Built-in: in the shell itself (cd, read). System program: separate executable (grep, date). Both: echo, kill, pwd."],
+["Batch processing","Users submit jobs that run without interaction. A monitor reads the batch, then schedules and runs jobs one by one."],
+["System call","A call into kernel code via a software interrupt or trap; how a user process requests a kernel service."],
+["Wrapper function and API","Wrapper: user-level library function (user mode) whose purpose is to make the system call. API: specifies functions for obtaining kernel services (WinAPI, POSIX, Java)."]],
+qs:[
+["Which are services that help the user?",["File-system manipulation","Program execution","Communications","Accounting"],[0,1,2],"Accounting is a resource-sharing service."],
+["How can processes communicate?",["Shared memory or message passing","Only through files","Only through interrupts","They cannot"],[0],"The OS supports both."],
+["Which is a built-in bash command?",["cd","grep","date","top"],[0],"grep and date are separate files in /bin."],
+["grep and date are implemented as...",["System programs (separate executables)","Shell built-ins","Kernel functions","Wrapper functions"],[0],"They live in /bin/grep and /bin/date."],
+["Which commands are implemented both ways?",["echo","kill","pwd","cd"],[0,1,2],"cd is only a built-in."],
+["Users interact with a batch processing system through...",["A monitor","A GUI","A shell","A wrapper"],[0],"It reads a batch of jobs and runs them."],
+["The GUI was invented at...",["Xerox PARC","Bell Labs","MIT","IBM"],[0],"The desktop metaphor interface."],
+["A system call is made via...",["A software interrupt or trap","A plain jump in user mode","A DMA transfer","A shell built-in"],[0],"It enters kernel mode."],
+["In which mode does a wrapper function run?",["User mode","Kernel mode","Both at once","Neither"],[0],"The system call itself runs in kernel mode."],
+["Which are common APIs?",["WinAPI","POSIX API","Java API","MS-DOS API"],[0,1,2],"MS-DOS is an OS structure example."],
+["The POSIX API is used by which systems?",["Linux","macOS","UNIX","Windows"],[0,1,2],"Windows uses WinAPI."],
+["What is glibc?",["C library with wrappers for Linux system calls","A shell","A file system","A scheduler"],[0],"Nearly every Linux system call has a wrapper."]]});

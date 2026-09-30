@@ -1,0 +1,23 @@
+LECTURES.push({n:7,title:"Lecture 7: OS Structure, Booting, Processes, Scheduling",
+cards:[
+["Monolithic (original UNIX)","Kernel is everything below the system-call interface and above the hardware (file system, CPU scheduling, memory management). Plus system programs."],
+["Layered approach","OS split into layers: layer 0 is hardware, layer N the user interface. Each layer uses only lower layers."],
+["Microkernel","Moves as much as possible from the kernel to user space; modules use message passing. Example: Mach. Easier to extend and port, more reliable and secure; performance overhead."],
+["Booting","Execution starts at a fixed location. A bootstrap loader (BIOS in ROM, or UEFI) finds and loads the kernel. GRUB lets you choose a kernel."],
+["Process","A program in execution; the unit of execution managed by the kernel (job in batch systems, task in Linux)."],
+["Process memory image","Text (code), initialized and uninitialized data, heap, stack (grows downward), command-line arguments and environment at the top."],
+["Process states","New, ready, running, waiting, terminated. Admitted, dispatched, I/O request (to waiting), event completes (to ready), preempted (to ready), exit."],
+["Process control block (PCB)","Per-process kernel structure to save and restore context: state, PC, registers, scheduling info, memory management, accounting, I/O status."]],
+qs:[
+["Which are benefits of microkernels?",["Easier to extend","Easier to port","More reliable (less kernel code)","No performance overhead"],[0,1,2],"User/kernel communication adds overhead."],
+["What is the main drawback of microkernels?",["Performance overhead from user/kernel communication","Less secure","Harder to port","Larger kernel"],[0],"Message passing has a cost."],
+["In the layered approach, layer 0 is...",["The hardware","The user interface","The kernel","The scheduler"],[0],"Layer N is the user interface."],
+["Which is an example of a microkernel?",["Mach","MS-DOS","Original UNIX","glibc"],[0],"macOS Darwin is partly based on Mach."],
+["The small ROM code that locates and loads the kernel is the...",["Bootstrap loader (BIOS)","Hypervisor","Shell","Wrapper"],[0],"UEFI replaces BIOS in modern systems."],
+["Which Linux build step produces vmlinuz?",["make","make menuconfig","make modules_install","make install"],[0],"It compiles the kernel image."],
+["Which are parts of a process memory image?",["Text segment","Heap","Stack","Process control block"],[0,1,2],"The PCB is a kernel data structure."],
+["In which direction does the stack grow?",["Downward, toward the data","Upward","Randomly","It does not grow"],[0],"The heap is the free space below the stack."],
+["A running process goes back to ready when it is...",["Preempted","Waiting for I/O","Terminated","Admitted"],[0],"E.g. a timer interrupt."],
+["A running process that requests I/O moves to which state?",["Waiting","Ready","Terminated","New"],[0],"It returns to ready when the event completes."],
+["Which are stored in a PCB?",["Program counter","CPU registers","I/O status information","Heap contents"],[0,1,2],"The heap belongs to the memory image."],
+["Which scheduler decides which memory-resident process gets the CPU next?",["Short-term (CPU) scheduler","Medium-term scheduler","Long-term scheduler","Boot loader"],[0],"Medium-term controls the degree of multiprogramming."]]});

@@ -1,0 +1,23 @@
+LECTURES.push({n:4,title:"Lecture 4: Cloud and Parallel Computing",
+cards:[
+["Classic vs cloud computing","Classic: buy and own, ~18-month procurement, plan for peak. Cloud: subscribe and use like a utility, pay for what you use, elastic."],
+["Over-provisioning","Capacity above demand leads to under-utilization and unused resources."],
+["Under-provisioning","Demand above capacity leads to loss of revenue and users' loss."],
+["Key to cloud computing","Virtualization."],
+["Flynn's taxonomy","Classifies parallel hardware by instruction and data streams: SISD, SIMD, MISD, MIMD."],
+["SIMD","All units run the same instruction on different data, in lockstep. Good for data-level parallelism such as image processing."],
+["MIMD and SPMD","MIMD: each processor may run different instructions on different data (most modern computers). SPMD: one program runs across all processors of a MIMD machine."],
+["UMA vs NUMA","UMA: equal access time to memory (SMP). NUMA: linked SMPs; access across the link is slower."]],
+qs:[
+["Which is an advantage of cloud over classic computing?",["Pay only for what you use","Fixed capacity","Longer procurement cycle","Buy and own hardware"],[0],"Cloud resources are elastic."],
+["What is the risk of over-provisioning?",["Under-utilization","Loss of revenue","Users' loss","Cache misses"],[0],"Capacity sits unused."],
+["Which are consequences of under-provisioning?",["Loss of revenue","Users' loss","Unused resources","Lower cost always"],[0,1],"Unused resources come from over-provisioning."],
+["What is the key technology behind cloud computing?",["Virtualization","Interrupts","DMA","Bus arbitration"],[0],"It enables sharing and elasticity."],
+["The Intel Pentium 4 is an example of which class?",["SISD","SIMD","MISD","MIMD"],[0],"A serial computer."],
+["Which Flynn class has no examples today?",["MISD","SISD","SIMD","MIMD"],[0],"Few examples have ever existed."],
+["Which are true of SIMD?",["Same instruction on all units each cycle","Good for regular problems like image processing","Lockstep, deterministic execution","Each unit runs a different instruction"],[0,1,2],"That last one describes MIMD."],
+["Which are advantages of shared memory?",["Global address space is user-friendly","Data sharing is fast and uniform","Scales easily to thousands of CPUs","No synchronization needed"],[0,1],"Scalability is its main weakness."],
+["Which are true of distributed memory?",["Each processor has its own local memory","No global address space","Programmer defines how and when data is communicated","Changes in one processor's memory are visible to all"],[0,1,2],"Visibility to all is shared memory."],
+["Which describes UMA?",["Equal access times to all memory","Linked SMPs with slower remote access","Each CPU has a private address space","Only one CPU"],[0],"Commonly SMP machines."],
+["In hybrid distributed-shared memory, the shared memory component is usually a...",["SMP machine","Single CPU","Network switch","Disk"],[0],"SMPs are then networked together."],
+["Which are true of MIMD?",["Most common type of parallel computer","Each processor may run a different instruction stream","Each processor may use a different data stream","Always synchronous"],[0,1,2],"Execution can be synchronous or asynchronous."]]});

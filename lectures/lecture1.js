@@ -1,0 +1,23 @@
+LECTURES.push({n:1,title:"Lecture 1: OS Basics, Computer Organization, Memory",
+cards:[
+["Operating system (OS)","A program that acts as an intermediary between a user of a computer and the hardware."],
+["Hardware vs software","Hardware: processors, I/O devices, memory, secondary storage. Software: the OS plus the application layer."],
+["Three OS responsibilities","Control hardware resources; enable and control execution of all other software; let users develop, run and manage applications and data."],
+["OS services","Program execution, I/O operations, file systems, communication, error detection and recovery, protection and security, accounting."],
+["DRAM","Dynamic RAM: high density, low power, cheap, slow. Must be refreshed regularly. Used for main memory."],
+["SRAM","Static RAM: low density, high power, expensive, fast. No refresh (6 transistors per bit). Used for cache."],
+["Memory hierarchy","Store everything on disk; copy recent data to main memory, then to cache. Higher levels are faster, smaller, costlier per bit."],
+["Hit ratio / miss ratio","Hit ratio = hits/accesses. Miss ratio = misses/accesses = 1 - hit ratio. Miss penalty = time to fetch the block from a lower level."]],
+qs:[
+["Which best describes an operating system?",["A program that is an intermediary between the user and the hardware","A type of memory chip","A compiler for the hardware","A network protocol"],[0],"The OS sits between users and hardware."],
+["Which are OS services?",["Program execution","File systems","Accounting","Photo editing"],[0,1,2],"Photo editing is an application."],
+["Which software interacts directly with the hardware?",["The operating system","A web browser","A compiler","A text editor"],[0],"Applications do not touch hardware directly."],
+["DRAM is called dynamic because it...",["must be refreshed periodically","changes speed","uses 6 transistors per bit","is used for cache"],[0],"DRAM cells need regular refresh."],
+["Which are true of SRAM?",["Faster than DRAM","Needs no refresh","Cheaper per GB than DRAM","Used for cache"],[0,1,3],"SRAM is fast but expensive."],
+["Which technology has access time linear in location?",["Tape","SRAM","DRAM","Magnetic disk"],[0],"Tape is sequential access."],
+["Which order is fastest to slowest?",["SRAM, DRAM, magnetic disk","DRAM, SRAM, magnetic disk","Magnetic disk, DRAM, SRAM","SRAM, magnetic disk, DRAM"],[0],"Speed falls as you go down the hierarchy."],
+["A cache gets 90 hits in 100 accesses. What is the miss ratio?",["0.10","0.90","10","1.90"],[0],"Miss ratio = 1 - hit ratio."],
+["What is the unit of copying between memory levels?",["Block (line)","Bit","File","Register"],[0],"A block may be multiple words."],
+["The ideal memory has...",["SRAM access time with disk capacity and cost per GB","Disk access time with SRAM cost","DRAM access time only","Tape capacity only"],[0],"Best of both worlds."],
+["Why is DRAM slow?",["Response depends on capacitive circuit properties that worsen with density","It is off chip, so connectors and wires add delay","It has 6 transistors per bit","It never needs refresh"],[0,1],"SRAM has 6 transistors per bit, not DRAM."],
+["Which are user-driven OS requirements?",["Efficient use of time","Data security","Convenience","Maximum clock speed"],[0,1,2],"Users also may want selective sharing."]]});
