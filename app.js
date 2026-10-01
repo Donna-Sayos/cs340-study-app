@@ -15,6 +15,6 @@ function examWith(ns){const pools=shuffle(ns.map(n=>{const l=get(n);return shuff
  while(out.length<EXAM_N&&pools.some(p=>p.length))for(const p of pools)if(out.length<EXAM_N&&p.length)out.push(p.pop());
  run('Exam',shuffle(out),()=>examWith(ns))}
 function submit(){let s=0;const h=S.qs.map((q,i)=>{const p=[...document.querySelectorAll('[name=q'+i+']:checked')].map(x=>+x.value);const ok=q.o.every((o,j)=>o.ok===p.includes(j));s+=ok;
- return `<div class="q ${ok?'good':'bad'}"><p><b>${i+1}.</b> ${esc(q.q)} (${ok?'correct':'incorrect'})</p><p>Your answer: ${p.map(j=>esc(q.o[j].t)).join('; ')||'none'}</p><p>Correct: ${q.o.filter(o=>o.ok).map(o=>esc(o.t)).join('; ')}</p><small>${esc(q.e)} [${esc(q.l)}]</small></div>`}).join('');
+ return `<div class="q ${ok?'good':'bad'}"><p><b>${i+1}.</b> ${esc(q.q)} (${ok?'correct':'incorrect'})</p><p>Your answer: ${p.map(j=>esc(q.o[j].t)).join('; ')||'none'}</p><p>Correct: ${q.o.filter(o=>o.ok).map(o=>esc(o.t)).join('; ')}</p><p><b>Why:</b> ${esc(q.e)}</p><small>${esc(q.l)}</small></div>`}).join('');
  app.innerHTML=`<button onclick="home()">Home</button><button onclick="S.again()">Try again</button><h2>${esc(S.title)}: results</h2><p class="score">${s} / ${S.qs.length} (${Math.round(100*s/S.qs.length)}%)</p>`+h;scrollTo(0,0)}
 home();
