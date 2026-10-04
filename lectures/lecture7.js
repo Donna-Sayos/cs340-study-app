@@ -18,7 +18,12 @@ cards:[
 ["PCB and process id","The kernel keeps a PCB for every created, not-yet-destroyed process so it can restore a process to its exact state. Each process has a unique positive integer process id."],
 ["Scheduling goals","Better hardware utilization, minimal response time, and fairness."],
 ["Three levels of scheduling","Long-term: which processes are admitted (batch systems). Medium-term: which are memory-resident. Short-term (CPU scheduling): which gets the CPU next."],
-["Degree of multiprogramming","Number of processes in memory. Too few: CPU may idle. Too many: not enough memory to perform well. Medium-term scheduling controls it and keeps a good mix."]],
+["Degree of multiprogramming","Number of processes in memory. Too few: CPU may idle. Too many: not enough memory to perform well. Medium-term scheduling controls it and keeps a good mix."],
+["Layered approach pros and cons","Advantage: simplicity of construction and debugging, since each layer uses only lower layers. Drawbacks: hard to define layers appropriately, and layering tends to be less efficient."],
+["Loadable kernel modules","Kernel keeps core components and links in extra services at boot or run time. Common in Linux, macOS, Solaris and Windows."],
+["Hybrid systems","Real OSes mix structures. Linux: monolithic (fast single address space) and modular. Windows: largely monolithic. macOS/iOS: Darwin has the Mach microkernel plus a BSD kernel, with Aqua (macOS) or Cocoa Touch (iOS) above."],
+["Android","Built on the Linux kernel; apps run on the ART VM, with .dex files compiled to native code; native libraries are reached through JNI, with the Bionic C library."],
+["Debugging","Log files record errors. A core dump captures a failed process's memory; a crash dump saves kernel memory after a kernel failure. Kernighan's law: debugging is twice as hard as writing the code."]],
 qs:[
 ["Which are benefits of microkernels?",["Easier to extend","Easier to port","More reliable (less kernel code)","No performance overhead"],[0,1,2],"Moving code to user space makes the OS easier to extend and port and more reliable. The cost is performance overhead."],
 ["What is the main drawback of microkernels?",["Performance overhead from user/kernel communication","Less secure","Harder to port","Larger kernel"],[0],"Communication between user space and kernel space adds performance overhead."],
@@ -43,4 +48,8 @@ qs:[
 ["What moves a process from waiting to ready?",["The awaited event completing","Being dispatched","Being preempted","Exiting"],[0],"When the awaited event completes, the process returns to ready."],
 ["Which scheduling level decides which processes are admitted?",["Long-term","Medium-term","Short-term","Dispatch"],[0],"Long-term scheduling decides which processes are admitted, usually in batch systems."],
 ["If too few processes are in memory...",["the CPU might be idle","processes lack memory","fairness is guaranteed","the PCB grows"],[0],"Too few processes in memory means the CPU may sit idle."],
-["Which are goals of process scheduling?",["Better hardware utilization","Minimize response time","Achieve fairness","Maximize kernel size"],[0,1,2],"Scheduling aims for better utilization, short response time and fairness."]]});
+["Which are goals of process scheduling?",["Better hardware utilization","Minimize response time","Achieve fairness","Maximize kernel size"],[0,1,2],"Scheduling aims for better utilization, short response time and fairness."],
+["The main advantage of the layered approach is...",["simplicity of construction and debugging","best performance","fewer layers","no interfaces"],[0],"Each layer relies only on lower layers."],
+["Loadable kernel modules let the kernel...",["link in additional services at boot or run time","run only at boot","replace the hardware","avoid system calls"],[0],"The kernel keeps a set of core components."],
+["Darwin, the kernel of macOS and iOS, consists of...",["the Mach microkernel plus a BSD kernel","a monolithic kernel only","a layered kernel","the Linux kernel"],[0],"It is a hybrid of two kernels."],
+["A core dump is...",["a capture of a process's memory saved for analysis","kernel memory saved after a crash","a log file","a boot block"],[0],"A crash dump is the kernel-memory version."]]});

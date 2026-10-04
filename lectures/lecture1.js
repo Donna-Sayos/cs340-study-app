@@ -14,7 +14,11 @@ cards:[
 ["Who manages each memory level","Registers: compiler. Cache: hardware. Main memory, SSD, magnetic disk: operating system. Sizes grow downward: registers <1 KB, cache <16 MB, main memory <64 GB, SSD <1 TB, disk <10 TB."],
 ["Layers of a computer system","Users, then the application layer (tools, browsers, shells, user data), then the OS, then hardware. A system is a cohesive collection of interrelated, interdependent parts."],
 ["Efficiency requirements","Resources used as efficiently as possible (maximum work per unit time), protected from intentional and unintentional abuse, and allocatable among users."],
-["Typical computer structure","Processors with caches, main memory, and I/O controllers (disks, graphics, network) on a memory-I/O interconnect; interrupts go to the processors."]],
+["Typical computer structure","Processors with caches, main memory, and I/O controllers (disks, graphics, network) on a memory-I/O interconnect; interrupts go to the processors."],
+["Dual-mode operation","A mode bit marks kernel mode (0, running for the OS) or user mode (1, running for an application). A system call switches to kernel mode; privileged instructions run only there."],
+["Multiprogramming vs multitasking","Multiprogramming keeps several processes in memory so the CPU always has one to run. Multitasking also switches among them frequently, giving fast response time."],
+["OS as resource allocator","Manages CPU time, memory, storage and I/O devices and decides how to allocate them among conflicting requests."],
+["Bootstrap program and firmware","RAM is volatile, so the bootstrap program lives in EEPROM or other firmware: nonvolatile storage that is infrequently written."]],
 qs:[
 ["Which best describes an operating system?",["A program that is an intermediary between the user and the hardware","A type of memory chip","A compiler for the hardware","A network protocol"],[0],"The OS sits between the user and the hardware, so it is the intermediary program."],
 ["Which are OS services?",["Program execution","File systems","Accounting","Photo editing"],[0,1,2],"Program execution, file systems and accounting are all OS services; photo editing is an application, not an OS service."],
@@ -35,4 +39,7 @@ qs:[
 ["Typical DRAM access time is...",["50-70 ns","0.5-2.5 ns","5-20 ms","5 s"],[0],"DRAM takes about 50-70 ns; SRAM is 0.5-2.5 ns and disk is 5-20 ms."],
 ["Which are OS efficiency requirements?",["Use resources as efficiently as possible","Protect resources from abuse","Allocate resources among users","Give every user the whole CPU"],[0,1,2],"The OS must use resources efficiently, protect them from abuse and allocate them among users. Giving one user the whole CPU contradicts allocation."],
 ["User data belongs to which layer?",["Application layer","Operating system","Hardware","Kernel"],[0],"User data is part of the application layer, not the OS or hardware."],
-["What is the miss penalty?",["Time taken to copy a block from the lower level on a miss","Hits divided by accesses","The cost of SRAM","Time to refresh DRAM"],[0],"Miss penalty is the time taken to copy the needed block from the lower level after a miss."]]});
+["What is the miss penalty?",["Time taken to copy a block from the lower level on a miss","Hits divided by accesses","The cost of SRAM","Time to refresh DRAM"],[0],"Miss penalty is the time taken to copy the needed block from the lower level after a miss."],
+["The mode bit is 0 in which mode?",["Kernel mode","User mode","Idle mode","Interrupt-disabled mode"],[0],"Kernel is 0 and user is 1."],
+["Why is the bootstrap program kept in firmware instead of RAM?",["RAM is volatile and loses its contents without power","RAM is too slow","Firmware is faster","RAM cannot hold programs"],[0],"The program must survive power loss."],
+["Multitasking differs from multiprogramming by...",["switching frequently among processes for fast response","keeping one process in memory","disabling interrupts","using DMA"],[0],"Both keep several processes in memory."]]});

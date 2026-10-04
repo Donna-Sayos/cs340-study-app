@@ -16,7 +16,12 @@ cards:[
 ["CLI details","Fetches a command and executes it. Lives in the kernel or in system programs; multiple flavors are shells. If commands are program names, adding features needs no shell change. An interpreter is a stand-alone program; a CLI is more general (MATLAB has a CLI, not an interpreter)."],
 ["GUI","Desktop metaphor with mouse, keyboard, monitor and icons; invented at Xerox PARC. Windows: GUI plus CLI shell. macOS: Aqua GUI over a UNIX kernel. Unix/Linux: CLI with optional GUI (CDE, KDE, GNOME) on X11 or Wayland."],
 ["User interface types","CLI (direct command entry), GUI, touchscreen, batch."],
-["Wrapper mechanics","The program calls foo(), the library wrapper; inside it, code switches to kernel mode and jumps to the system call handler, which invokes the real kernel function. Technically the wrapper defined in the API is what programs call."]],
+["Wrapper mechanics","The program calls foo(), the library wrapper; inside it, code switches to kernel mode and jumps to the system call handler, which invokes the real kernel function. Technically the wrapper defined in the API is what programs call."],
+["System call categories","Process control, file management, device management, information maintenance, communications, protection."],
+["Passing parameters","Three methods: in registers; in a block or table in memory with its address in a register; or pushed on the stack. Linux uses registers for five or fewer parameters, otherwise a block."],
+["System services (utilities)","Provide a convenient environment for development and execution: file management, status information, and more. Constantly running ones are called services, subsystems or daemons."],
+["Why apps are OS-specific","Each OS has its own system calls and binary format (ELF on Linux, Mach-O on macOS), so a binary built for one OS does not run on another."],
+["Mechanism vs policy","Mechanisms determine how to do something; policies determine what will be done. The timer is a mechanism for CPU protection; how long to set it is policy. Separating them gives flexibility."]],
 qs:[
 ["Which are services that help the user?",["File-system manipulation","Program execution","Communications","Accounting"],[0,1,2],"File-system manipulation, program execution and communications help the user. Accounting supports efficient system operation."],
 ["How can processes communicate?",["Shared memory or message passing","Only through files","Only through interrupts","They cannot"],[0],"Processes exchange information through shared memory or message passing."],
@@ -38,4 +43,9 @@ qs:[
 ["macOS uses which GUI over a UNIX kernel?",["Aqua","CDE","KDE","GNOME"],[0],"macOS uses the Aqua GUI over a UNIX kernel. CDE, KDE and GNOME are Unix/Linux GUIs."],
 ["Which GUIs are built on X11 or Wayland?",["CDE","KDE","GNOME","Aqua"],[0,1,2],"CDE, KDE and GNOME are built on X11 or Wayland. Aqua belongs to macOS."],
 ["What does a wrapper do on the way to a system call?",["Switches to kernel mode and jumps to the handler","Runs entirely in kernel mode","Replaces the kernel","Compiles the program"],[0],"Inside the wrapper, code switches to kernel mode and jumps to the system call handler."],
-["When a program 'calls a system call', it technically calls...",["the wrapper function in the API library","the kernel function directly","the shell","the hypervisor"],[0],"Programs technically call the library's wrapper, which then invokes the system call."]]});
+["When a program 'calls a system call', it technically calls...",["the wrapper function in the API library","the kernel function directly","the shell","the hypervisor"],[0],"Programs technically call the library's wrapper, which then invokes the system call."],
+["Which are system call categories?",["Process control","File management","Communications","Compiling source code"],[0,1,2],"Compiling is done by system programs."],
+["Which are methods of passing system call parameters?",["Registers","A block or table in memory","The stack","Email"],[0,1,2],"The OS needs the parameters in one of these places."],
+["Mechanisms determine...",["how to do something","what will be done","who the user is","which disk to use"],[0],"Policies decide what will be done."],
+["macOS uses which executable format?",["Mach-O","ELF","DEX","PE"],[0],"Linux uses ELF."],
+["Constantly running system-program processes are called...",["daemons (services, subsystems)","zombies","orphans","wrappers"],[0],"Network daemons are one example."]]});

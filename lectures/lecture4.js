@@ -16,7 +16,11 @@ cards:[
 ["Shared memory pros and cons","Pros: global address space is user-friendly; data sharing is fast and uniform. Cons: poor scalability between memory and CPUs (traffic grows); programmer must synchronize access; increasingly difficult and expensive with more processors."],
 ["Distributed memory pros and cons","Pros: memory scales with processors; fast local access with no cache coherency overhead; cost effective (commodity parts). Cons: programmer handles communication and synchronization; hard to map global-memory data structures; non-uniform access times."],
 ["Memory comparison","CC-UMA: scales to 10s of processors (memory-CPU bandwidth). CC-NUMA: 100s (bandwidth, non-uniform times). Distributed: 1000s (administration, hard programming). Shared uses MPI, threads, OpenMP, shmem; distributed uses MPI."],
-["Hybrid distributed-shared memory","Largest, fastest computers use both: SMPs (shared inside) networked together (distributed between). Network communication moves data between SMPs. Typically OpenMP threads inside, MPI between."]],
+["Hybrid distributed-shared memory","Largest, fastest computers use both: SMPs (shared inside) networked together (distributed between). Network communication moves data between SMPs. Typically OpenMP threads inside, MPI between."],
+["Cloud deployment models","Public: available via the Internet to anyone who pays. Private: run by a company for its own use. Hybrid: includes both public and private components."],
+["Cloud service models","SaaS: applications via the Internet (word processor). PaaS: software stack ready for applications (database server). IaaS: servers or storage over the Internet (backup storage)."],
+["Clustered systems","Two or more individual systems (nodes), each typically multicore, joined together; loosely coupled, unlike multiprocessor systems."],
+["Cache coherency","When copies of data live in several caches they must stay consistent; usually handled by hardware below the OS level."]],
 qs:[
 ["Which is an advantage of cloud over classic computing?",["Pay only for what you use","Fixed capacity","Longer procurement cycle","Buy and own hardware"],[0],"Cloud is pay by use and elastic. Classic computing means buying and owning fixed capacity."],
 ["What is the risk of over-provisioning?",["Under-utilization","Loss of revenue","Users' loss","Cache misses"],[0],"Capacity above demand leaves resources unused, which is under-utilization."],
@@ -38,4 +42,8 @@ qs:[
 ["Which are disadvantages of shared memory?",["Poor scalability between memory and CPUs","Programmer must synchronize access","Increasingly expensive with more processors","Data sharing is slow"],[0,1,2],"Shared memory scales poorly, needs programmer synchronization and gets expensive with more processors. Data sharing is fast, not slow."],
 ["Which are advantages of distributed memory?",["Memory scales with processors","Fast local access without cache coherency overhead","Cost effective commodity parts","Global address space simplifies programming"],[0,1,2],"Distributed memory scales memory with processors, avoids cache coherency overhead and uses cheap parts. A global address space is shared memory's feature."],
 ["Which architecture scales to 1000s of processors?",["Distributed memory","CC-UMA","CC-NUMA","SISD"],[0],"Distributed memory systems scale to 1000s of processors, versus 100s for CC-NUMA and 10s for CC-UMA."],
-["Distributed memory systems communicate using...",["MPI","Shared variables","DMA","Interrupts only"],[0],"Distributed memory systems use MPI message passing to move data between processors."]]});
+["Distributed memory systems communicate using...",["MPI","Shared variables","DMA","Interrupts only"],[0],"Distributed memory systems use MPI message passing to move data between processors."],
+["A cloud run by a company for its own use is a...",["private cloud","public cloud","hybrid cloud","SaaS"],[0],"Public clouds are open to anyone willing to pay."],
+["Applications such as word processors delivered over the Internet are...",["SaaS","PaaS","IaaS","a private cloud"],[0],"PaaS is a software stack; IaaS is servers or storage."],
+["Storage available over the Internet for backups is an example of...",["IaaS","SaaS","PaaS","SISD"],[0],"IaaS offers servers or storage."],
+["Clustered systems are...",["loosely coupled nodes, each typically multicore","a single multicore chip","a kind of SRAM","only SMP machines"],[0],"They differ from multiprocessors by joining whole systems."]]});
