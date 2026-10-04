@@ -19,4 +19,4 @@ function submit(){let s=0;const h=S.qs.map((q,i)=>{const p=[...document.querySel
  app.innerHTML=`<button onclick="home()">Home</button><button onclick="S.again()">Try again</button><h2>${esc(S.title)}: results</h2><p class="score">${s} / ${S.qs.length} (${Math.round(100*s/S.qs.length)}%)</p>`+h;scrollTo(0,0)}
 home();
 document.addEventListener('keydown',e=>{if(!S.deck||!document.querySelector('.card'))return;
- if(e.key==='ArrowRight')mv(1);else if(e.key==='ArrowLeft')mv(-1);else if(e.key===' '){e.preventDefault();S.f=!S.f;drawCard()}});
+ if(e.key==='ArrowRight')mv(1);else if(e.key==='ArrowLeft')mv(-1);else if(e.key===' '||e.key==='Enter'){e.preventDefault();S.f=!S.f;drawCard()}});
