@@ -7,3 +7,4 @@ button:hover{background:#eee}
 .q{background:#fff;border:1px solid #ddd;padding:.8rem 1rem;margin:.8rem 0}
 .good{border-left:4px solid #2e7d32}.bad{border-left:4px solid #c62828}
 label{display:block;margin:.2rem 0}.score{font-size:1.4rem;font-weight:600}
+.card.steps div{text-align:left}
