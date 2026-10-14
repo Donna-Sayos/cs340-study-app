@@ -5,8 +5,8 @@ const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[
 const AK=Object.keys(AC).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\\/-]/g,'\\$&'));
 const AR=new RegExp('(^|[^\\w/(-])('+AK.join('|')+')((?:e?s)?)(?![\\w-]|/| \\([A-Z])','g');
 const X=s=>esc(String(s).replace(AR,(m,pre,a,p)=>AC[a]?pre+a+p+' ('+AC[a]+')':m));
-const TB=h=>h.replace(/\{\{T:(.*?)\}\}/g,(m,d)=>'<table class="dt">'+d.split('|').map((r,i)=>'<tr>'+r.split(',').map(c=>i?'<td>'+c+'</td>':'<th>'+c+'</th>').join('')+'</tr>').join('')+'</table>');
-const R=s=>TB(X(s)).replace(/\n/g,'<br>').replace(/<\/table><br>/g,'</table>');
+const TB=d=>'<table class="dt">'+d.split('|').map((r,i)=>'<tr>'+r.split(',').map(c=>i?'<td>'+esc(c)+'</td>':'<th>'+esc(c)+'</th>').join('')+'</tr>').join('')+'</table>';
+const R=s=>String(s).split(/(\{\{T:.*?\}\})/).map(p=>p.startsWith('{{T:')?TB(p.slice(4,-2)):X(p)).join('').replace(/\n/g,'<br>').replace(/<\/table><br>/g,'</table>');
 const prep=(q,l)=>({q:q[0],o:shuffle(q[1].map((t,i)=>({t,ok:q[2].includes(i)}))),e:q[3]||'',l:l.title,multi:q[2].length>1});
 function home(){app.innerHTML='<h1>Study Guide</h1>'+LECTURES.map(l=>`<div class="row"><b>${esc(l.title)}</b><button onclick="cards(${l.n})">Flashcards</button><button onclick="quiz(${l.n})">Quiz</button></div>`).join('')+'<h2>Exam</h2><p>Lectures to include:</p>'+LECTURES.map(l=>`<label><input type="checkbox" class="ex" value="${l.n}" checked> ${esc(l.title)}</label>`).join('')+`<p><button onclick="selAll(true)">Select all</button><button onclick="selAll(false)">Clear</button><button onclick="exam()">Start exam (${EXAM_N} questions)</button></p>`}
 const selAll=v=>document.querySelectorAll('.ex').forEach(c=>c.checked=v);
