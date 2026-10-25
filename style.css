@@ -10,3 +10,4 @@ label{display:block;margin:.2rem 0}.score{font-size:1.4rem;font-weight:600}
 .card.steps div{text-align:left}
 .dt{border-collapse:collapse;margin:.5rem 0}.dt th,.dt td{border:1px solid #aaa;padding:.2rem .8rem;text-align:center}.dt th{background:#eee}.card .dt{margin:.6rem auto}
 .dt{display:block;overflow-x:auto;max-width:100%}.dt th{font-weight:600}
+textarea{width:100%;box-sizing:border-box;font:inherit;margin-top:.4rem}
