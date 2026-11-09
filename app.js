@@ -5,7 +5,7 @@ const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[
 const AK=Object.keys(AC).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\\/-]/g,'\\$&'));
 const AR=new RegExp('(^|[^\\w/(-])('+AK.join('|')+')((?:e?s)?)(?![\\w-]|/| \\([A-Z])','g');
 const X=s=>esc(String(s).replace(AR,(m,pre,a,p)=>AC[a]?pre+a+p+' ('+AC[a]+')':m));
-const TB=d=>'<table class="dt">'+d.split('|').map((r,i)=>'<tr>'+r.split(',').map(c=>i?'<td>'+esc(c)+'</td>':'<th>'+esc(c)+'</th>').join('')+'</tr>').join('')+'</table>';
+const TB=d=>'<table class="dt">'+d.split('|').map((r,i)=>'<tr>'+r.split(',').map(c=>i?'<td>'+esc(c).replace(/\{c\}/g,',')+'</td>':'<th>'+esc(c).replace(/\{c\}/g,',')+'</th>').join('')+'</tr>').join('')+'</table>';
 const R=s=>String(s).split(/(\{\{T:.*?\}\})/).map(p=>p.startsWith('{{T:')?TB(p.slice(4,-2)):X(p)).join('').replace(/\n/g,'<br>').replace(/<\/table><br>/g,'</table>');
 const prep=(q,l)=>({q:q[0],o:shuffle(q[1].map((t,i)=>({t,ok:q[2].includes(i)}))),e:q[3]||'',l:l.title,multi:q[2].length>1});
 const CQ=typeof CLASSQUIZZES!=='undefined'?CLASSQUIZZES:[];
