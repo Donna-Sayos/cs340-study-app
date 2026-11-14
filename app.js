@@ -6,7 +6,24 @@ const AK=Object.keys(AC).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^
 const AR=new RegExp('(^|[^\\w/(-])('+AK.join('|')+')((?:e?s)?)(?![\\w-]|/| \\([A-Z])','g');
 const X=s=>esc(String(s).replace(AR,(m,pre,a,p)=>AC[a]?pre+a+p+' ('+AC[a]+')':m));
 const TB=d=>'<table class="dt">'+d.split('|').map((r,i)=>'<tr>'+r.split(',').map(c=>i?'<td>'+esc(c).replace(/\{c\}/g,',')+'</td>':'<th>'+esc(c).replace(/\{c\}/g,',')+'</th>').join('')+'</tr>').join('')+'</table>';
-const R=s=>String(s).split(/(\{\{T:.*?\}\})/).map(p=>p.startsWith('{{T:')?TB(p.slice(4,-2)):X(p)).join('').replace(/\n/g,'<br>').replace(/<\/table><br>/g,'</table>');
+const GC=['#cfe8ff','#ffe0b3','#d4f0c8','#f6c9e0','#e4d7ff','#fff2a8','#c9f0ef','#ffd1d1'];
+const GG=d=>{const sl=d.split('|').map(x=>{const a=x.split(':');return{n:a[0],f:+a[1],t:+a[2]}});const T=Math.max(...sl.map(s=>s.t));const u=Math.max(16,Math.min(46,680/T));const W=Math.round(T*u)+44,H=78;let g='',last=-99;
+ const tick=(t,force)=>{const x=20+t*u;let o='<line x1="'+x+'" y1="46" x2="'+x+'" y2="54" stroke="#555"/>';if(force||x-last>=26){o+='<text x="'+x+'" y="68" font-size="11" text-anchor="middle" fill="#333">'+(+t.toFixed(2))+'</text>';last=x}return o};
+ sl.forEach((s,i)=>{const x=20+s.f*u,w=(s.t-s.f)*u,idle=s.n==='idle',k=(parseInt((s.n.match(/\d+/)||['1'])[0])||1);
+  g+='<rect x="'+x+'" y="10" width="'+w+'" height="36" rx="3" fill="'+(idle?'#eee':GC[(k-1+8)%8])+'" stroke="#555"'+(idle?' stroke-dasharray="4 3"':'')+'/><text x="'+(x+w/2)+'" y="33" font-size="'+(w<20?9:13)+'" text-anchor="middle" fill="#222">'+esc(s.n)+'</text>'+tick(s.f,i===0)});
+ g+=tick(sl[sl.length-1].t,true);
+ return '<div class="gantt"><svg role="img" aria-label="Gantt chart" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" font-family="system-ui,sans-serif">'+g+'</svg></div>'};
+const RG=d=>{const p=d.split('|'),N={};p[0].split(';').forEach(x=>{const a=x.split(':'),c=+a[4]||0;N[a[1]]={k:a[0],x:+a[2],y:+a[3],c,hh:a[0]==='P'?18:Math.max(18,(c-1)*6+14)}});
+ const V=Object.values(N),W=Math.max(...V.map(n=>n.x))+60,H=Math.max(...V.map(n=>n.y+n.hh))+68;
+ const ep=(a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,dd=Math.hypot(dx,dy)||1;let s=18;if(a.k==='R')s=Math.min(22/Math.abs(dx||1e-9),a.hh/Math.abs(dy||1e-9))*dd;return[a.x+dx/dd*s,a.y+dy/dd*s]};
+ let g='<defs><marker id="arK" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#333"/></marker><marker id="arR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c62828"/></marker></defs>',red=false;
+ p[1].split(';').forEach(e=>{const m=e.match(/^(\w+)>(\w+):(\w+)$/),a=N[m[1]],b=N[m[2]],hi=m[3].includes('c'),rq=m[3].includes('r');if(hi)red=true;const s=ep(a,b),t=ep(b,a);
+  g+='<line x1="'+s[0].toFixed(1)+'" y1="'+s[1].toFixed(1)+'" x2="'+t[0].toFixed(1)+'" y2="'+t[1].toFixed(1)+'" stroke="'+(hi?'#c62828':'#333')+'" stroke-width="1.6"'+(rq?' stroke-dasharray="5 3"':'')+' marker-end="url(#'+(hi?'arR':'arK')+')"/>'});
+ for(const n in N){const o=N[n];if(o.k==='P')g+='<circle cx="'+o.x+'" cy="'+o.y+'" r="18" fill="#cfe8ff" stroke="#345"/><text x="'+o.x+'" y="'+(o.y+4)+'" font-size="13" text-anchor="middle" fill="#222">'+esc(n)+'</text>';
+  else{g+='<rect x="'+(o.x-22)+'" y="'+(o.y-o.hh)+'" width="44" height="'+(2*o.hh)+'" rx="2" fill="#fff2cc" stroke="#345"/><text x="'+o.x+'" y="'+(o.y-o.hh-5)+'" font-size="13" text-anchor="middle" fill="#222">'+esc(n)+'</text>';for(let i=0;i<o.c;i++)g+='<circle cx="'+o.x+'" cy="'+(o.y+(i-(o.c-1)/2)*12)+'" r="3" fill="#333"/>'}}
+ g+='<text x="10" y="'+(H-22)+'" font-size="11" fill="#444">dashed arrow: request edge; solid arrow: assignment edge</text><text x="10" y="'+(H-8)+'" font-size="11" fill="#444">dots: instances of a resource type'+(red?'; red: edge on a cycle':'')+'</text>';
+ return '<div class="gantt"><svg role="img" aria-label="Resource allocation graph" width="'+Math.max(W,380)+'" height="'+H+'" viewBox="0 0 '+Math.max(W,380)+' '+H+'" font-family="system-ui,sans-serif">'+g+'</svg></div>'};
+const R=s=>String(s).split(/(\{\{[TGR]:.*?\}\})/).map(p=>/^\{\{[TGR]:/.test(p)?(p[2]==='T'?TB(p.slice(4,-2)):p[2]==='G'?GG(p.slice(4,-2)):RG(p.slice(4,-2))):X(p)).join('').replace(/\n/g,'<br>').replace(/<\/table><br>/g,'</table>').replace(/<\/svg><\/div><br>/g,'</svg></div>');
 const prep=(q,l)=>({q:q[0],o:shuffle(q[1].map((t,i)=>({t,ok:q[2].includes(i)}))),e:q[3]||'',l:l.title,multi:q[2].length>1});
 const CQ=typeof CLASSQUIZZES!=='undefined'?CLASSQUIZZES:[];
 const CQH=()=>CQ.length?'<h2>Class Quizzes</h2><p>Practice with the quizzes from class. The questions and answer options are shuffled every time you start.</p>'+CQ.map(c=>`<label><input type="checkbox" class="cq" value="${c.id}" onchange="cqSync()"> ${esc(c.title)} (${c.qs.length} questions)</label>`).join('')+`<label><input type="checkbox" id="cqall" onchange="cqAll(this.checked)"> <b>Combine all quizzes</b> (${CQ.reduce((a,c)=>a+c.qs.length,0)} questions)</label><p><button onclick="classQuiz()">Start class quiz</button></p>`:'';
